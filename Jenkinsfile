@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         AWS_ACCESS_KEY_ID = credentials('aws-jenkins-demo')
-        AWS_SECRET_ACCESS_KEY = credentials('AKIA5TLHNTDSGZ5AEFH6')
+        AWS_SECRET_ACCESS_KEY = credentials('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')
     }
     stages {
         stage('Checkout') {
