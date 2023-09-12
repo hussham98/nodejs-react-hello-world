@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         AWS_ACCESS_KEY_ID = credentials('0e52fb54-0392-440b-9043-a127945b615d')
-        AWS_SECRET_ACCESS_KEY = credentials('t0iz37Di37Hwh2qMl1vMUyK/AFYmCRJ924mOh7Fb')
+        AWS_SECRET_ACCESS_KEY = credentials('AKIA5TLHNTDSGZ5AEFH6')
     }
     stages {
         stage('Checkout') {
@@ -16,7 +16,7 @@ pipeline {
                     sh """
                     # Set AWS credentials as environment variables
                     export AWS_ACCESS_KEY_ID=${0e52fb54-0392-440b-9043-a127945b615d}
-                    export AWS_SECRET_ACCESS_KEY=${t0iz37Di37Hwh2qMl1vMUyK/AFYmCRJ924mOh7Fb}
+                    export AWS_SECRET_ACCESS_KEY=${AKIA5TLHNTDSGZ5AEFH6}
                     
                     # Connect to your EC2 instance using SSH
                     ssh -i /home/robb/Downloads/deltablue.pem ec2-user@54.80.18.212
