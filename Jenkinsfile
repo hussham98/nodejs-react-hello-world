@@ -10,18 +10,16 @@ pipeline {
             steps {
                 script {
                     withCredentials([[
-                    $class: 'AmazonWebServicesCredentialsBinding',
-                    credentialsId: 'deltablue-aws', // The ID of your AWS credentials in Jenkins
-                    accessKeyVariable: 'AWS_ACCESS_KEY_ID',     // Environment variable to store the AWS access key
-                    secretKeyVariable: 'AWS_SECRET_ACCESS_KEY' // Environment variable to store the AWS secret key
-                ]]) {
-                    ) {
+                        $class: 'AmazonWebServicesCredentialsBinding',
+                        credentialsId: 'deltablue-aws', // The ID of your AWS credentials in Jenkins
+                        accessKeyVariable: 'AWS_ACCESS_KEY_ID',     // Environment variable to store the AWS access key
+                        secretKeyVariable: 'AWS_SECRET_ACCESS_KEY' // Environment variable to store the AWS secret key
+                    ]]) {
+                        // Connect to your EC2 instance using SSH
                         sh """
-                        # Connect to your EC2 instance using SSH
-                        ssh -i "deltablue.pem" ubuntu@ec2-174-129-66-64.compute-1.amazonaws.com
-
+                        ssh -i "deltablue.pem" ubuntu@ec2-174-129-66-64.compute-1.amazonaws.com << EOF
                         # Navigate to your app directory
-                        cd /
+                        cd /.
 
                         # Pull the latest code from GitHub
                         git pull origin main
@@ -33,7 +31,8 @@ pipeline {
                         npm run bundle
 
                         # Restart your Node.js app
-                        pm2 nodejs-react-hello-world
+                        pm2 restart nodejs-react-hello-world
+                        EOF
                         """
                     }
                 }
