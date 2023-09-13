@@ -15,7 +15,7 @@ pipeline {
                     accessKeyVariable: 'AWS_ACCESS_KEY_ID',     // Environment variable to store the AWS access key
                     secretKeyVariable: 'AWS_SECRET_ACCESS_KEY' // Environment variable to store the AWS secret key
                 ]]) {
-                    ]) {
+                    ) {
                         sh """
                         # Connect to your EC2 instance using SSH
                         ssh -i "deltablue.pem" ubuntu@ec2-174-129-66-64.compute-1.amazonaws.com
